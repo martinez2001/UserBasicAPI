@@ -1,0 +1,8 @@
+grumphp:
+  tasks:
+    phpunit:
+      config_file: phpunit.xml
+      testsuite: ~
+      group: []
+      always_execute: false
+      order: null
