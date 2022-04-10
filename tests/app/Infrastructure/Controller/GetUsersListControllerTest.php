@@ -22,8 +22,6 @@ class GetUsersListControllerTest extends TestCase
 
         $this->userDataSource = Mockery::mock(UserDataSource::class);
         $this->app->bind(UserDataSource::class, fn () => $this->userDataSource);
-
-
     }
 
     /**
@@ -41,5 +39,4 @@ class GetUsersListControllerTest extends TestCase
 
         $response->assertExactJson(['error' => 'An error occurred while a petition was made']);
     }
-
 }
