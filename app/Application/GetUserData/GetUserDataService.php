@@ -5,7 +5,7 @@ namespace App\Application\GetUserData;
 use App\Application\UserDataSource\UserDataSource;
 use Exception;
 
-class GetUserData
+class GetUserDataService
 {
     /**
      * @var UserDataSource
@@ -13,7 +13,7 @@ class GetUserData
     private $userDataSource;
 
     /**
-     * GetUserData constructor.
+     * GetUserDataService constructor.
      * @param UserDataSource $userDataSource
      */
     public function __construct(UserDataSource $userDataSource)
