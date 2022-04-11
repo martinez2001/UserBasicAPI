@@ -27,10 +27,10 @@ class GetUserDataControllerTest extends TestCase
     /**
      * @test
      */
-    public function userWithGivenIdDoesNotExist()
+    public function user_with_given_id_does_not_exist()
     {
         $this->userDataSource
-            ->expects('findById')
+            ->expects('getUserDataById')
             ->with('999')
             ->once()
             ->andThrow(new Exception('User not found'));
@@ -38,5 +38,37 @@ class GetUserDataControllerTest extends TestCase
         $response = $this->get('/api/users/999');
 
         $response->assertExactJson(['error' => 'user does not exist']);
+    }
+    /**
+     * @test
+     */
+    public function user_with_given_id_exists()
+    {
+        $userData = ['1', 'manolo@gmail.com'];
+        $this->userDataSource
+            ->expects('getUserDataById')
+            ->with('1')
+            ->once()
+            ->andReturn($userData);
+
+        $response = $this->get('/api/users/1');
+
+        $response->assertExactJson(['user' => $userData]);
+    }
+
+    /**
+     * @test
+     */
+    public function petition_gives_generic_error()
+    {
+        $this->userDataSource
+            ->expects('getUserDataById')
+            ->with('a')
+            ->once()
+            ->andThrow(new Exception('Petition error'));
+
+        $response = $this->get('/api/users/a');
+
+        $response->assertExactJson(['error' => "Petition error"]);
     }
 }

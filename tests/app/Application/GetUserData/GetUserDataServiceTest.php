@@ -28,11 +28,11 @@ class GetUserDataServiceTest extends TestCase
     /**
      * @test
      */
-    public function userNotFound()
+    public function user_not_found()
     {
         $userId = 999;
         $this->userDataSource
-            ->expects('findById')
+            ->expects('getUserDataById')
             ->with($userId)
             ->once()
             ->andThrow(new Exception('User not found'));
@@ -44,14 +44,15 @@ class GetUserDataServiceTest extends TestCase
     /**
      * @test
      */
-    public function userFound()
+    public function user_found()
     {
         $userId = 1;
+        $user = new User($userId, 'hola@email.com');
         $this->userDataSource
-            ->expects('findById')
+            ->expects('getUserDataById')
             ->with($userId)
             ->once()
-            ->andThrow(new Exception('User found'));
+            ->andReturn($user);
 
         $this->expectException(Exception::class);
 
