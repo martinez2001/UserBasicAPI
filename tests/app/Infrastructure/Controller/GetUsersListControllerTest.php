@@ -30,13 +30,34 @@ class GetUsersListControllerTest extends TestCase
     public function error_occurs_when_asked_for_users_list()
     {
         $this->userDataSource
-            ->expects('returnUsersList')
+            ->expects('getUsersList')
             ->with()
-            ->never()
+            ->once()
             ->andThrow(new Exception('An error occurred while a petition was made'));
 
         $response = $this->get('/api/users/list');
 
-        $response->assertExactJson(['error' => 'An error occurred while a petition was made']);
+        $response->assertStatus(Response::HTTP_INTERNAL_SERVER_ERROR)->assertExactJson(['error' => "An error occurred while a petition was made"]);
     }
+
+    /**
+     * @test
+     */
+    public function there_are_no_users_in_list(){
+        $empty_users_list = array();
+
+        $this->userDataSource
+            ->expects('getUsersList')
+            ->with()
+            ->once()
+            ->andReturn($empty_users_list);
+
+            $response = $this->get('/api/users/list');
+
+            $response->assertStatus(Response::HTTP_OK)->assertExactJson(['list' => array()]);
+    }
+
+
+
+
 }
