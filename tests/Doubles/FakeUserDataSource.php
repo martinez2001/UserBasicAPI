@@ -12,7 +12,12 @@ class FakeUserDataSource implements UserDataSource
         return [];
     }
     public function getUsersList(): array{
-        //TODO
-        return [];
+        $numRand = rand(1,2);
+        if($numRand==1){
+            return array();
+        }
+        else {
+            return array(1, 2, 3);
+        }
     }
 }
