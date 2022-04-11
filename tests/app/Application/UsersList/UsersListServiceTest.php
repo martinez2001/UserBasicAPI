@@ -27,7 +27,7 @@ class UsersListServiceTest extends TestCase
     /**
      * @test
      */
-    public function emptyListOfUsers()
+    public function empty_list_of_users()
     {
         $emptyList = array();
 
