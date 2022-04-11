@@ -7,5 +7,5 @@ use App\Domain\User;
 Interface UserDataSource
 {
     public function findByEmail(string $email): User;
-    public function findById(string $userId): User;
+    public function getUserDataById(string $userId): array;
 }

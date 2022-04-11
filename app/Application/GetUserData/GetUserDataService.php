@@ -25,10 +25,10 @@ class GetUserDataService
      * @return bool
      * @throws Exception
      */
-    public function execute(string $userId): bool
+    public function execute(string $userId): array
     {
-        $user = $this->userDataSource->findById($userId);
+        $userData = $this->userDataSource->getUserDataById($userId);
 
-        return $user->getData();
+        return $userData;
     }
 }

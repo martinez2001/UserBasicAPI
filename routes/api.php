@@ -1,6 +1,7 @@
 <?php
 
 use App\Infrastructure\Controllers\GetUserController;
+use App\Infrastructure\Controllers\GetUserDataController;
 use App\Infrastructure\Controllers\GetUsersListController;
 use App\Infrastructure\Controllers\IsEarlyAdopterUserController;
 use App\Infrastructure\Controllers\StatusController;
@@ -28,4 +29,5 @@ Route::get(
 
 Route::get('user/{email}', IsEarlyAdopterUserController::class);
 Route::get('user/id/{userId}', GetUserController::class);
+Route::get('users/{userId}', GetUserDataController::class);
 Route::get('users/list', GetUsersListController::class);
