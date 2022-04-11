@@ -27,7 +27,7 @@ class GetUserDataController extends BaseController
             }
             else {
                 return response()->json([
-                    'error' => "petition error"
+                    'error' => "Petition error"
                 ], Response::HTTP_INTERNAL_SERVER_ERROR);
             }
         }
